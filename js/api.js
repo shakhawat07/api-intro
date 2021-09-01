@@ -6,14 +6,20 @@ function loadData() {
 function loadUsers() {
     fetch('https://jsonplaceholder.typicode.com/users')
         .then(res => res.json())
-        .then(user => displayUsers(user))
+        .then(users => displayUsers(users))
 }
 function loadPosts() {
     fetch('https://jsonplaceholder.typicode.com/posts')
         .then(res => res.json())
         .then(data => console.log(data))
 }
-function displayUsers(user) {
-    console.log(user);
+function displayUsers(users) {
+    const ul = document.getElementById('users');
+    for (const user of users) {
+        // console.log(user.name);
+        const li = document.createElement('li');
+        li.innerText = `Name: ${user.name} Email: ${user.email}`;
+        ul.appendChild(li);
+    }
 }
 
